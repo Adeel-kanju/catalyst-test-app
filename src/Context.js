@@ -24,13 +24,16 @@ function ContextProvider({children}) {
         
         setAllPhotos(updatedArr)
     }
-    const addToCart=(newItem)=> {
+    let addToCart=(newItem)=> {
         setCartItems(prevItems => [...prevItems, newItem])
+    }
+    let removeFromCart=(id)=> {
+        setCartItems(prevItems => prevItems.filter(item => item.id !== id))
     }
     
     console.log(cartItems)
     return (
-        <Context.Provider value={{allPhotos, toggleFavorite, addToCart, cartItems}}>
+        <Context.Provider value={{allPhotos, toggleFavorite, addToCart, cartItems, removeFromCart}}>
             {children}
         </Context.Provider>
     )
